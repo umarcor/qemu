@@ -120,11 +120,11 @@ s390x_family=s390x
 
 aarch64_magic='\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7\x00'
 aarch64_mask='\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'
-aarch64_family=arm
+aarch64_family=arm64
 
 aarch64_be_magic='\x7fELF\x02\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7'
 aarch64_be_mask='\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff'
-aarch64_be_family=armeb
+aarch64_be_family=armeb64
 
 hppa_magic='\x7f\x45\x4c\x46\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x0f'
 hppa_mask='\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff'
@@ -173,10 +173,16 @@ qemu_get_family() {
     ppc64el|ppc64le)
         echo "ppcle"
         ;;
-    arm|armel|armhf|arm64|armv[4-9]*l|aarch64)
+    arm64|armv[8-9]*l|aarch64)
+        echo "arm64"
+        ;;
+    arm|armel|armhf|armv[4-7]*l)
         echo "arm"
         ;;
-    armeb|armv[4-9]*b|aarch64_be)
+    armv[8-9]*b|aarch64_be)
+        echo "armeb64"
+        ;;
+    armeb|armv[4-7]*b)
         echo "armeb"
         ;;
     sparc*)
